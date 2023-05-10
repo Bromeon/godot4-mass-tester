@@ -45,11 +45,37 @@ runs:
 #        unzip artifact.zip -d $RUNNER_DIR/godot_bin
 #      shell: bash
 
-    - name: "Download artifact ${{ inputs.artifact-name }}"
-      uses: actions/download-artifact@v3
+    # JavaScript, see https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
+    - name: "Download Godot artifacts"
+      uses: actions/github-script@v6
       with:
-        name: "${{ inputs.artifact-name }}"
-        path: ${{ env.RUNNER_DIR }}/godot_bin
+        script: |
+          let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+             owner: context.repo.owner,
+             repo: context.repo.repo,
+             run_id: context.payload.workflow_run.id,
+          });
+          let matchArtifact = allArtifacts.data.artifacts.filter((artifact) => {
+            return artifact.name == "${{ inputs.artifact-name }}"
+          })[0];
+          let download = await github.rest.actions.downloadArtifact({
+             owner: context.repo.owner,
+             repo: context.repo.repo,
+             artifact_id: matchArtifact.id,
+             archive_format: 'zip',
+          });
+          let fs = require('fs');
+          fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/artifact.zip`, Buffer.from(download.data));
+
+    - name: 'Unzip artifact'
+      run: unzip artifact.zip
+      shell: bash
+
+#    - name: "Download artifact ${{ inputs.artifact-name }}"
+#      uses: actions/download-artifact@v3
+#      with:
+#        name: "${{ inputs.artifact-name }}"
+#        path: ${{ env.RUNNER_DIR }}/godot_bin
 
     - name: "Prepare Godot executable"
       run: |
