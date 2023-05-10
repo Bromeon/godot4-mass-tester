@@ -18,8 +18,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v3
-
     # Replaces also backspaces on Windows, since they cause problems in Bash
     - name: "Store variable to Godot binary"
       run: |
