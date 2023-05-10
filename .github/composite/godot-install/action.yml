@@ -49,6 +49,7 @@ runs:
       uses: actions/download-artifact@v3
       with:
         name: "${{ inputs.artifact-name }}"
+        path: ${{ env.RUNNER_DIR }}/godot_bin
 
     - name: "Prepare Godot executable"
       run: |
