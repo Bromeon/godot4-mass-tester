@@ -78,6 +78,7 @@ runs:
 
     - name: "Build gdext (itest)"
       run: |
+        tree -L 2
         cargo build -p itest ${{ inputs.rust-extra-args }}
       shell: bash
       env:
