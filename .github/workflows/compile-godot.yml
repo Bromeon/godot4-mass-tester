@@ -40,53 +40,53 @@ jobs:
       matrix:
         include:
           - sha: 6980b2bf1761b9b980920dc5a4d32f240d88e211
-#          - sha: d59cdb83275b353aa91d33ee98c2bb51353fd1f7
-#          - sha: 646543257059b750938c1ab535bf78348c9407e2
-#          - sha: 341b95871cdbffe8861735b507f12fab363bc469
-#          - sha: c55892cc5ca10008214e971de2543bf9f74aa992
-#          - sha: a64137d5dd0eb1eca3364a31bdc1b5b8d0ebd8ff
-#          - sha: cf8ad12b56df4ae7bba4c73070dd035693a880e4
-#          - sha: 140c7f411480d6203d0b6d6a0677096aaeafd955
-#          - sha: 15f9ac9458ef13c7acaa3494bb2b437d5f43b46e
-#          - sha: cb6308ed1fb530c84709e0d58ef72ec04d5c1baf
-#          - sha: bbe05b60c848b9c9e3918200775f8ac576ecd760
-#          - sha: 1b9802fa8cb45e876cd90d6a174b95b270a7f934
-#          - sha: b3bb92ae5ecae0389bbadd7c6933fbae39d74971
-#          - sha: 0b944e1a68e60f4847f0614ac48ef27f21567fb2
-#          - sha: 491a437df51192f76ac19cee1ba2001365697cc4
-#          - sha: c9f81045be9760820a1bb4898f08d2ff9784d4b7
-#          - sha: 3e6a731904105ecb6712248106acd1c78eb2cd3c
-#          - sha: 70f69f6c72120c8870f3605ea76424baf59a7071
-#          - sha: 392fdd106da75957aed3e31c9ca26a3999aea0d6
-#          - sha: e370b3538b0a55b7fc280cad0b864c01fc431d07
-#          - sha: 7f6b28321227705d10e948a5b9328515fbfcdbe5
-#          - sha: 704560cc3c16186ddd0a3526faec8dd3a7e8a318
-#          - sha: b791a7acb86c980a3bb55081f04ff4b9f64d8ad6
-#          - sha: 21b687446d3e0b7a837615d0dd60aca535f1a16a
-#          - sha: 4b51569164fe2029feb16c90048a8092dcf63bc1
-#          - sha: 720869fe5e4c316e97fffee4b3d2db35a09e498d
-#          - sha: 903289fa0d42e013e548d8d8380afa962c895af7
-#          - sha: 41f1ec1efe566d684f94e71129f6ac9f512130ea
-#          - sha: 353efd774fe323f124180fda8dae2f1af018aea1
-#          - sha: fe6cd734ad17fe838d9c080e1538db5d43272e49
-#          - sha: 0daa634f2449f688e0c819d8c58a0389d0119abd
-#          - sha: 466e99d57ccdb8cb1efe42ce2b590c978d0655e0
-#          - sha: eb6d6ab29f2ee2a86d76d1f6926ea1fa58ed0180
-#          - sha: e85f6871ba9bf8993399136efbad5617dba11b0a
-#          - sha: 7e6f22b13dc71fdaf71978140968aaff1027bae4
-#          - sha: 32fbba4bf6692d77ace59044d9080f5d1aa9113a
-#          - sha: 49ba2e04479791e9186e72e004a64f3abc68c375
-#          - sha: 00215ec9041c7b5e58f8d3ff36840293c5e550ac
-#          - sha: eebb1d8effb0ec69c7f418f49d9d4388d263d7de
-#          - sha: e758164ba65280dce57064afc1e4607f23a65cef
-#          - sha: e70777260dffd96a704c54876f9ff543f0f45eac
-#          - sha: b639076e04d2eee2946103d9d4472995bd21724f
-#          - sha: 273a6eeb66ed1ff2fcc1ee3a6eaae4eedf437875
-#          - sha: b226f7e587c4b5093d7bf27a4b0ac687a2d1cd2e
-#          - sha: f369ed9223146a644cfa3f922e0aacbb002f688c
-#          - sha: febc674f4818dd1185b2e43e899115f70f55b4f5
-#          - sha: 6db12c5e50017940df7921e37c9a85eb376881ed
-#          - sha: bd1bc68ba07e330e814af19faf87d59da3f0ce6f
+          - sha: d59cdb83275b353aa91d33ee98c2bb51353fd1f7
+          - sha: 646543257059b750938c1ab535bf78348c9407e2
+          - sha: 341b95871cdbffe8861735b507f12fab363bc469
+          - sha: c55892cc5ca10008214e971de2543bf9f74aa992
+          - sha: a64137d5dd0eb1eca3364a31bdc1b5b8d0ebd8ff
+          - sha: cf8ad12b56df4ae7bba4c73070dd035693a880e4
+          - sha: 140c7f411480d6203d0b6d6a0677096aaeafd955
+          - sha: 15f9ac9458ef13c7acaa3494bb2b437d5f43b46e
+          - sha: cb6308ed1fb530c84709e0d58ef72ec04d5c1baf
+          - sha: bbe05b60c848b9c9e3918200775f8ac576ecd760
+          - sha: 1b9802fa8cb45e876cd90d6a174b95b270a7f934
+          - sha: b3bb92ae5ecae0389bbadd7c6933fbae39d74971
+          - sha: 0b944e1a68e60f4847f0614ac48ef27f21567fb2
+          - sha: 491a437df51192f76ac19cee1ba2001365697cc4
+          - sha: c9f81045be9760820a1bb4898f08d2ff9784d4b7
+          - sha: 3e6a731904105ecb6712248106acd1c78eb2cd3c
+          - sha: 70f69f6c72120c8870f3605ea76424baf59a7071
+          - sha: 392fdd106da75957aed3e31c9ca26a3999aea0d6
+          - sha: e370b3538b0a55b7fc280cad0b864c01fc431d07
+          - sha: 7f6b28321227705d10e948a5b9328515fbfcdbe5
+          - sha: 704560cc3c16186ddd0a3526faec8dd3a7e8a318
+          - sha: b791a7acb86c980a3bb55081f04ff4b9f64d8ad6
+          - sha: 21b687446d3e0b7a837615d0dd60aca535f1a16a
+          - sha: 4b51569164fe2029feb16c90048a8092dcf63bc1
+          - sha: 720869fe5e4c316e97fffee4b3d2db35a09e498d
+          - sha: 903289fa0d42e013e548d8d8380afa962c895af7
+          - sha: 41f1ec1efe566d684f94e71129f6ac9f512130ea
+          - sha: 353efd774fe323f124180fda8dae2f1af018aea1
+          - sha: fe6cd734ad17fe838d9c080e1538db5d43272e49
+          - sha: 0daa634f2449f688e0c819d8c58a0389d0119abd
+          - sha: 466e99d57ccdb8cb1efe42ce2b590c978d0655e0
+          - sha: eb6d6ab29f2ee2a86d76d1f6926ea1fa58ed0180
+          - sha: e85f6871ba9bf8993399136efbad5617dba11b0a
+          - sha: 7e6f22b13dc71fdaf71978140968aaff1027bae4
+          - sha: 32fbba4bf6692d77ace59044d9080f5d1aa9113a
+          - sha: 49ba2e04479791e9186e72e004a64f3abc68c375
+          - sha: 00215ec9041c7b5e58f8d3ff36840293c5e550ac
+          - sha: eebb1d8effb0ec69c7f418f49d9d4388d263d7de
+          - sha: e758164ba65280dce57064afc1e4607f23a65cef
+          - sha: e70777260dffd96a704c54876f9ff543f0f45eac
+          - sha: b639076e04d2eee2946103d9d4472995bd21724f
+          - sha: 273a6eeb66ed1ff2fcc1ee3a6eaae4eedf437875
+          - sha: b226f7e587c4b5093d7bf27a4b0ac687a2d1cd2e
+          - sha: f369ed9223146a644cfa3f922e0aacbb002f688c
+          - sha: febc674f4818dd1185b2e43e899115f70f55b4f5
+          - sha: 6db12c5e50017940df7921e37c9a85eb376881ed
+          - sha: bd1bc68ba07e330e814af19faf87d59da3f0ce6f
 
 
     steps:
@@ -110,60 +110,60 @@ jobs:
 #          path: bin #${{ runner.temp }}/godot_bin
 ##          key: godot-${{ matrix.id }}-${{ env.SHA }}
 #          key: godot-linux-${{ env.SHA }}
-#
+
       - name: "Checkout this repo"
         uses: actions/checkout@v3
         with:
           path: 'repo'
           clean: 'false'
-#
-#      - name: "Copy GDExtension header"
-#        run: |
-#          mkdir -p bin
-#          cp core/extension/gdextension_interface.h bin/gdextension_interface.h
-#
-#      # LeakSanitizer cannot know symbols for unloaded dynamic libraries (like the GDExtension Rust one).
-#      # Not only will it lose the stacktrace, but it also reports a 1024-byte leak for println!.
-#      # Leaving the dynamic library open by not calling dlclose() works around that.
-#      # See https://github.com/google/sanitizers/issues/89, which is not solved despite closed.
-#      - name: "Apply no-dlclose patch for memcheck version"
-#        run: |
-#          git apply repo/res/no-dlclose.patch
-#          git diff
-#        if: ${{ contains(matrix.id, 'memcheck') }}
-#
-#      - name: "Install scons"
-#        if: steps.cache-godot.outputs.cache-hit != 'true'
-#        run: |
-#          pip install scons==3.1.2
-#          scons --version
-#
-#      - name: "[Linux] C dependencies"
-#        if: steps.cache-godot.outputs.cache-hit != 'true'
-#        run: |
-#          sudo apt-get update
-#          # The actual dependencies
-#          sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
-#              libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev \
-#              libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip \
-#              llvm libspeechd-dev speech-dispatcher fontconfig libfontconfig-dev
-#
-#      - name: "[Linux|macOS] Compile Godot..."
-#        if: steps.cache-godot.outputs.cache-hit != 'true'
-#        run: |
-#          scons platform=linuxbsd target=editor dev_build=yes
-#
-#      - name: "[Linux|macOS] Make executable"
-#        if: steps.cache-godot.outputs.cache-hit != 'true'
-#        run: |
-#          ls -la bin
-#          chmod +x $GODOT_BIN
 
-      - name: "UNDO test step"
+      - name: "Copy GDExtension header"
         run: |
-          mkdir bin
-          echo "test-content" > bin/test.txt
-          echo "other-content" > bin/other.txt
+          mkdir -p bin
+          cp core/extension/gdextension_interface.h bin/gdextension_interface.h
+
+      # LeakSanitizer cannot know symbols for unloaded dynamic libraries (like the GDExtension Rust one).
+      # Not only will it lose the stacktrace, but it also reports a 1024-byte leak for println!.
+      # Leaving the dynamic library open by not calling dlclose() works around that.
+      # See https://github.com/google/sanitizers/issues/89, which is not solved despite closed.
+      - name: "Apply no-dlclose patch for memcheck version"
+        run: |
+          git apply repo/res/no-dlclose.patch
+          git diff
+        if: ${{ contains(matrix.id, 'memcheck') }}
+
+      - name: "Install scons"
+#        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          pip install scons==3.1.2
+          scons --version
+
+      - name: "[Linux] C dependencies"
+#        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          # The actual dependencies
+          sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
+              libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev \
+              libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip \
+              llvm libspeechd-dev speech-dispatcher fontconfig libfontconfig-dev
+
+      - name: "[Linux|macOS] Compile Godot..."
+#        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          scons platform=linuxbsd target=editor dev_build=yes
+
+      - name: "[Linux|macOS] Make executable"
+#        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          ls -la bin
+          chmod +x $GODOT_BIN
+
+#      - name: "UNDO test step"
+#        run: |
+#          mkdir bin
+#          echo "test-content" > bin/test.txt
+#          echo "other-content" > bin/other.txt
 #
       # Upload artifact also when cached (so last successful workflow always has artifact)
       - name: "Upload artifact"
@@ -172,14 +172,14 @@ jobs:
           name: godot-linux-${{ matrix.sha }}
           path: bin
 
-#      - name: "Summary"
-#        # xargs has the nice side effect of trimming leading/trailing whitespace, see https://stackoverflow.com/a/12973694
-#        # The other answers, while more "idiomatic" (if that can even be said for something like bash), are not properly handling newlines
-#        run: |
-#          ls -la bin
-#          godotVer=$($GODOT_BIN --version | xargs)
-#          echo "## Godot version: \`$godotVer\`" >> $GITHUB_STEP_SUMMARY
-#          echo "Built for **${{ matrix.id }}** from commit [\`$SHA\`](https://github.com/godotengine/godot/commit/$SHA)." >> $GITHUB_STEP_SUMMARY
+      - name: "Summary"
+        # xargs has the nice side effect of trimming leading/trailing whitespace, see https://stackoverflow.com/a/12973694
+        # The other answers, while more "idiomatic" (if that can even be said for something like bash), are not properly handling newlines
+        run: |
+          ls -la bin
+          godotVer=$($GODOT_BIN --version | xargs)
+          echo "## Godot version: \`$godotVer\`" >> $GITHUB_STEP_SUMMARY
+          echo "Built for **${{ matrix.id }}** from commit [\`$SHA\`](https://github.com/godotengine/godot/commit/$SHA)." >> $GITHUB_STEP_SUMMARY
 
 
 
