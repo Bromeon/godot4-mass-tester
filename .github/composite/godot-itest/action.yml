@@ -72,6 +72,12 @@ runs:
 #        rust: ${{ inputs.rust-toolchain }}
 #        with-llvm: ${{ inputs.with-llvm }}
 
+    - name: "List directory"
+      run: |
+        ls -la
+        tree -L 2
+      shell: bash
+
     - name: "Build gdext (itest)"
       run: |
         cargo build -p itest ${{ inputs.rust-extra-args }}

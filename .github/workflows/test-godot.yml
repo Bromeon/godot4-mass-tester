@@ -189,7 +189,11 @@ jobs:
         with:
           repository: godot-rust/gdext
           clean: true
-#          path: gdext
+          path: . #${{ env.RUNNER_DIR }}/gdext
+
+      - name: "List directory"
+        run: |
+          tree -L 2
 
       - name: "Run Godot integration test"
         uses: ./.github/composite/godot-itest
