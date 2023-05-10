@@ -69,7 +69,7 @@ runs:
           fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/artifact.zip`, Buffer.from(download.data));
 
     - name: 'Unzip artifact'
-      run: unzip artifact.zip
+      run: unzip -d ${{ env.RUNNER_DIR }}/godot_bin/ artifact.zip
       shell: bash
 
 #    - name: "Download artifact ${{ inputs.artifact-name }}"
@@ -77,6 +77,16 @@ runs:
 #      with:
 #        name: "${{ inputs.artifact-name }}"
 #        path: ${{ env.RUNNER_DIR }}/godot_bin
+
+    - name: "Debug current"
+      run: |
+        ls -la
+      shell: bash
+
+    - name: "Debug godot_bin"
+      run: |
+        ls -la ${{ env.RUNNER_DIR }}/godot_bin
+      shell: bash
 
     - name: "Prepare Godot executable"
       run: |
