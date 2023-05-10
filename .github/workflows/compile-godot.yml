@@ -9,9 +9,6 @@ name: Godot build pipeline
 on:
   workflow_dispatch: # manual trigger
   push:
-  schedule:
-    # Run at 02:47 UTC each morning
-    - cron: "47 2 * * *"
 
 defaults:
   run:
