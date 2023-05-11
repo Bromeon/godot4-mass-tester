@@ -90,81 +90,71 @@ jobs:
 
 
     steps:
-      - name: "Clone Godot ${{ matrix.sha }} "
-        # Note: GODOT_BIN file does not yet exist, but the path can already be stored
-        run: |
-          #git clone https://github.com/godotengine/godot.git --depth 1 --doesntwork ${{ matrix.sha }}.
-          git init
-          git remote add origin https://github.com/godotengine/godot.git
-          git fetch --depth 1 origin ${{ matrix.sha }}
-          git reset --hard FETCH_HEAD
-
-          echo "SHA=`git rev-parse HEAD`" >> $GITHUB_ENV
-          echo "SHORT_SHA=`git rev-parse --short HEAD`" >> $GITHUB_ENV
-          echo "GODOT_BIN=bin/godot.linuxbsd.editor.dev.x86_64" >> $GITHUB_ENV
+#      - name: "Clone Godot ${{ matrix.sha }} "
+#        # Note: GODOT_BIN file does not yet exist, but the path can already be stored
+#        run: |
+#          #git clone https://github.com/godotengine/godot.git --depth 1 --doesntwork ${{ matrix.sha }}.
+#          git init
+#          git remote add origin https://github.com/godotengine/godot.git
+#          git fetch --depth 1 origin ${{ matrix.sha }}
+#          git reset --hard FETCH_HEAD
 #
-#      - name: "Check cache for Godot version ${{ env.SHORT_SHA }}"
-#        id: cache-godot
-#        uses: actions/cache@v3
+#          echo "SHA=`git rev-parse HEAD`" >> $GITHUB_ENV
+#          echo "SHORT_SHA=`git rev-parse --short HEAD`" >> $GITHUB_ENV
+#          echo "GODOT_BIN=bin/godot.linuxbsd.editor.dev.x86_64" >> $GITHUB_ENV
+##
+##      - name: "Check cache for Godot version ${{ env.SHORT_SHA }}"
+##        id: cache-godot
+##        uses: actions/cache@v3
+##        with:
+##          path: bin #${{ runner.temp }}/godot_bin
+###          key: godot-${{ matrix.id }}-${{ env.SHA }}
+##          key: godot-linux-${{ env.SHA }}
+#
+#      - name: "Checkout this repo"
+#        uses: actions/checkout@v3
 #        with:
-#          path: bin #${{ runner.temp }}/godot_bin
-##          key: godot-${{ matrix.id }}-${{ env.SHA }}
-#          key: godot-linux-${{ env.SHA }}
-
-      - name: "Checkout this repo"
-        uses: actions/checkout@v3
-        with:
-          path: 'repo'
-          clean: 'false'
-
-      - name: "Copy GDExtension header"
-        run: |
-          mkdir -p bin
-          cp core/extension/gdextension_interface.h bin/gdextension_interface.h
-
-      # LeakSanitizer cannot know symbols for unloaded dynamic libraries (like the GDExtension Rust one).
-      # Not only will it lose the stacktrace, but it also reports a 1024-byte leak for println!.
-      # Leaving the dynamic library open by not calling dlclose() works around that.
-      # See https://github.com/google/sanitizers/issues/89, which is not solved despite closed.
-      - name: "Apply no-dlclose patch for memcheck version"
-        run: |
-          git apply repo/res/no-dlclose.patch
-          git diff
-        if: ${{ contains(matrix.id, 'memcheck') }}
-
-      - name: "Install scons"
-#        if: steps.cache-godot.outputs.cache-hit != 'true'
-        run: |
-          pip install scons==3.1.2
-          scons --version
-
-      - name: "[Linux] C dependencies"
-#        if: steps.cache-godot.outputs.cache-hit != 'true'
-        run: |
-          sudo apt-get update
-          # The actual dependencies
-          sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
-              libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev \
-              libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip \
-              llvm libspeechd-dev speech-dispatcher fontconfig libfontconfig-dev
-
-      - name: "[Linux|macOS] Compile Godot..."
-#        if: steps.cache-godot.outputs.cache-hit != 'true'
-        run: |
-          scons platform=linuxbsd target=editor dev_build=yes
-
-#      - name: "[Linux|macOS] Make executable"
+#          path: 'repo'
+#          clean: 'false'
+#
+#      - name: "Copy GDExtension header"
+#        run: |
+#          mkdir -p bin
+#          cp core/extension/gdextension_interface.h bin/gdextension_interface.h
+#
+#      - name: "Install scons"
 ##        if: steps.cache-godot.outputs.cache-hit != 'true'
 #        run: |
-#          ls -la bin
-#          chmod +x $GODOT_BIN
-
-      # Upload artifact also when cached (so last successful workflow always has artifact)
-      - name: "Upload artifact"
-        uses: actions/upload-artifact@v3
-        with:
-          name: godot-linux-${{ matrix.sha }}
-          path: bin
+#          pip install scons==3.1.2
+#          scons --version
+#
+#      - name: "[Linux] C dependencies"
+##        if: steps.cache-godot.outputs.cache-hit != 'true'
+#        run: |
+#          sudo apt-get update
+#          # The actual dependencies
+#          sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
+#              libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev \
+#              libdbus-1-dev libudev-dev libxi-dev libxrandr-dev yasm xvfb wget unzip \
+#              llvm libspeechd-dev speech-dispatcher fontconfig libfontconfig-dev
+#
+#      - name: "[Linux|macOS] Compile Godot..."
+##        if: steps.cache-godot.outputs.cache-hit != 'true'
+#        run: |
+#          scons platform=linuxbsd target=editor dev_build=yes
+#
+##      - name: "[Linux|macOS] Make executable"
+###        if: steps.cache-godot.outputs.cache-hit != 'true'
+##        run: |
+##          ls -la bin
+##          chmod +x $GODOT_BIN
+#
+#      # Upload artifact also when cached (so last successful workflow always has artifact)
+#      - name: "Upload artifact"
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: godot-linux-${{ matrix.sha }}
+#          path: bin
 
 #      - name: "Summary"
 #        # xargs has the nice side effect of trimming leading/trailing whitespace, see https://stackoverflow.com/a/12973694
