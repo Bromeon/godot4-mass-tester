@@ -186,10 +186,12 @@ jobs:
       # gdext
 
       - uses: actions/checkout@v3
+
+      - uses: actions/checkout@v3
         with:
           repository: godot-rust/gdext
-          clean: true
-          path: . #${{ env.RUNNER_DIR }}/gdext
+          clean: false
+          path: ${{ env.RUNNER_DIR }}/gdext
 
       - name: "List directory"
         run: |

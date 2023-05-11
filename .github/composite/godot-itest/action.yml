@@ -77,8 +77,8 @@ runs:
       shell: bash
 
     - name: "Build gdext (itest)"
+      working-directory: gdext
       run: |
-        tree -L 2
         cargo build -v -p itest ${{ inputs.rust-extra-args }}
       shell: bash
       env:
@@ -86,6 +86,7 @@ runs:
 
     # Note: no longer fails, as we expect header to be forward-compatible; instead issues a warning
     - name: "Copy and compare GDExtension header"
+      working-directory: gdext
       if: inputs.godot-check-header == 'true'
       run: |
         mv godot-ffi/src/gen/gdextension_interface.h godot-ffi/src/gen/gdextension_interface_prebuilt.h
@@ -111,6 +112,7 @@ runs:
       shell: bash
 
     - name: "Run Godot integration tests"
+      working-directory: gdext
       # Aborts immediately if Godot outputs certain keywords (would otherwise stall until CI runner times out).
       # Explanation:
       # * tee:      still output logs while scanning for errors
