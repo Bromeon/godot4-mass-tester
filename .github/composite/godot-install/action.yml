@@ -34,41 +34,42 @@ runs:
 #        key: ${{ inputs.artifact-name }}-v${{ inputs.godot-ver }}
 #      shell: bash
 
-#    - name: "Download Godot artifact"
-##      if: steps.cache-godot.outputs.cache-hit != 'true'
-#      run: |
-#        curl https://nightly.link/Bromeon/godot4-mass-tester/workflows/compile-godot/master/${{ inputs.artifact-name }}.zip \
-#          -Lo artifact.zip \
-#          --retry 3
-#        unzip artifact.zip -d $RUNNER_DIR/godot_bin
-#      shell: bash
-
-    # JavaScript, see https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
-    - name: "Download Godot artifacts"
-      uses: actions/github-script@v6
-      with:
-        script: |
-          let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
-             owner: context.repo.owner,
-             repo: context.repo.repo,
-             //run_id: context.payload.workflow_run.id,
-             run_id: 4939838607,
-          });
-          let matchArtifact = allArtifacts.data.artifacts.filter((artifact) => {
-            return artifact.name == "${{ inputs.artifact-name }}"
-          })[0];
-          let download = await github.rest.actions.downloadArtifact({
-             owner: context.repo.owner,
-             repo: context.repo.repo,
-             artifact_id: matchArtifact.id,
-             archive_format: 'zip',
-          });
-          let fs = require('fs');
-          fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/artifact.zip`, Buffer.from(download.data));
-
-    - name: 'Unzip artifact'
-      run: unzip -d ${{ env.RUNNER_DIR }}/godot_bin/ artifact.zip
+    - name: "Download Godot artifact"
+      #      if: steps.cache-godot.outputs.cache-hit != 'true'
+      # FIXME(#270): Use again latest workflow, instead of last-known good one 4921814392
+      run: |
+        curl https://nightly.link/Bromeon/godot4-mass-tester/actions/runs/4950146893/${{ inputs.artifact-name }}.zip \
+          -Lo artifact.zip \
+          --retry 3
+        unzip artifact.zip -d $RUNNER_DIR/godot_bin
       shell: bash
+
+#    # JavaScript, see https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
+#    - name: "Download Godot artifacts"
+#      uses: actions/github-script@v6
+#      with:
+#        script: |
+#          let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+#             owner: context.repo.owner,
+#             repo: context.repo.repo,
+#             //run_id: context.payload.workflow_run.id,
+#             run_id: 4939838607,
+#          });
+#          let matchArtifact = allArtifacts.data.artifacts.filter((artifact) => {
+#            return artifact.name == "${{ inputs.artifact-name }}"
+#          })[0];
+#          let download = await github.rest.actions.downloadArtifact({
+#             owner: context.repo.owner,
+#             repo: context.repo.repo,
+#             artifact_id: matchArtifact.id,
+#             archive_format: 'zip',
+#          });
+#          let fs = require('fs');
+#          fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/artifact.zip`, Buffer.from(download.data));
+#
+#    - name: 'Unzip artifact'
+#      run: unzip -d ${{ env.RUNNER_DIR }}/godot_bin/ artifact.zip
+#      shell: bash
 
 #    - name: "Download artifact ${{ inputs.artifact-name }}"
 #      uses: actions/download-artifact@v3
