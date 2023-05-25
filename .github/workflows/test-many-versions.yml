@@ -8,7 +8,7 @@ name: Godot build pipeline
 
 on:
   workflow_dispatch: # manual trigger
-  push:
+#  push:
 
 defaults:
   run:
@@ -45,11 +45,13 @@ jobs:
       - name: "Clone Godot ${{ matrix.sha }} "
         # Note: GODOT_BIN file does not yet exist, but the path can already be stored
         # Cloning doesn't work, need init + fetch
+        env:
+          SHA: 30713ac1ef1954d8964a7d84136470f9db2713ec
         run: |
           git init
           #git remote add origin https://github.com/godotengine/godot.git
           git remote add origin https://github.com/dsnopek/godot.git
-          git fetch --depth 1 origin ${{ matrix.sha }}
+          git fetch --depth 1 origin $SHA
           git reset --hard FETCH_HEAD
 
           echo "SHA=`git rev-parse HEAD`" >> $GITHUB_ENV
@@ -69,12 +71,6 @@ jobs:
         with:
           path: 'repo'
           clean: 'false'
-
-      - name: "Copy GDExtension header"
-        working-directory: repo
-        run: |
-          mkdir -p bin
-          cp core/extension/gdextension_interface.h bin/gdextension_interface.h
 
       - name: "Install scons"
 #        if: steps.cache-godot.outputs.cache-hit != 'true'
