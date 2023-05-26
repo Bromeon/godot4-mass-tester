@@ -124,7 +124,7 @@ jobs:
         # Note: GODOT_BIN file does not yet exist, but the path can already be stored
         # Cloning doesn't work, need init + fetch
         env:
-          GIT_SHA: 30713ac1ef1954d8964a7d84136470f9db2713ec
+          GIT_SHA: 77733faedea4bb9bc0fa148b576aaf737e96889a
         run: |
           git init
           #git remote add origin https://github.com/godotengine/godot.git
@@ -235,20 +235,20 @@ jobs:
       # ----------------------------------------------------------------------------------------------------------------------------------------------
       # gdext
 
-      - uses: actions/checkout@v3
-
-      - uses: actions/checkout@v3
-        with:
-          repository: godot-rust/gdext
-          clean: false
-          path: gdext
-
-      - name: "List directory"
-        run: |
-          tree -L 2
-
-      - name: "Run Godot integration test"
-        uses: ./.github/composite/godot-itest
-        with:
-          artifact-name: godot-linux-${{ matrix.sha }}
-          godot-binary: godot.linuxbsd.editor.dev.x86_64
+#      - uses: actions/checkout@v3
+#
+#      - uses: actions/checkout@v3
+#        with:
+#          repository: godot-rust/gdext
+#          clean: false
+#          path: gdext
+#
+#      - name: "List directory"
+#        run: |
+#          tree -L 2
+#
+#      - name: "Run Godot integration test"
+#        uses: ./.github/composite/godot-itest
+#        with:
+#          artifact-name: godot-linux-${{ matrix.sha }}
+#          godot-binary: godot.linuxbsd.editor.dev.x86_64
