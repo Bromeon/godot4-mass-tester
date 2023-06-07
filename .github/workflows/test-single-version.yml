@@ -124,11 +124,10 @@ jobs:
         # Note: GODOT_BIN file does not yet exist, but the path can already be stored
         # Cloning doesn't work, need init + fetch
         env:
-          GIT_SHA: 77733faedea4bb9bc0fa148b576aaf737e96889a
+          GIT_SHA: 72b59325cf7beba7e6e9170cf6023a079fd58672
         run: |
           git init
-          #git remote add origin https://github.com/godotengine/godot.git
-          git remote add origin https://github.com/dsnopek/godot.git
+          git remote add origin https://github.com/godotengine/godot.git
           git fetch --depth 1 origin $GIT_SHA
           git reset --hard FETCH_HEAD
 
@@ -219,7 +218,7 @@ jobs:
       - name: "Upload artifact"
         uses: actions/upload-artifact@v3
         with:
-          name: godot-${{ matrix.id }}
+          name: godot-${{ matrix.id }}-nightly
           path: bin
 
       - name: "Summary"
@@ -230,9 +229,10 @@ jobs:
           godotVer=$($GODOT_BIN --version | xargs)
           echo "## Godot version: \`$godotVer\`" >> $GITHUB_STEP_SUMMARY
           echo "Built for **${{ matrix.id }}** from commit [\`$SHA\`](https://github.com/godotengine/godot/commit/$SHA)." >> $GITHUB_STEP_SUMMARY
+        
+        
 
-
-      # ----------------------------------------------------------------------------------------------------------------------------------------------
+        # ----------------------------------------------------------------------------------------------------------------------------------------------
       # gdext
 
 #      - uses: actions/checkout@v3
