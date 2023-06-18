@@ -124,10 +124,12 @@ jobs:
         # Note: GODOT_BIN file does not yet exist, but the path can already be stored
         # Cloning doesn't work, need init + fetch
         env:
-          GIT_SHA: 72b59325cf7beba7e6e9170cf6023a079fd58672
+          GIT_SHA: d7eb7108f0f172adede96f6d7c3b3c0eaee9036d
+          REPO: Pylgos/godot
+#          BRANCH: fix-gdextension-variant-construction
         run: |
           git init
-          git remote add origin https://github.com/godotengine/godot.git
+          git remote add origin https://github.com/$REPO.git
           git fetch --depth 1 origin $GIT_SHA
           git reset --hard FETCH_HEAD
 
