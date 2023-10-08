@@ -129,7 +129,7 @@ jobs:
 
       # Upload artifact also when cached (so last successful workflow always has artifact)
       - name: "Upload artifact"
-        if: env.COMPILE_GODOT == 'true'
+        if: env.COMPILE_GODOT == 'true' && always()
         uses: actions/upload-artifact@v3
         with:
           name: godot-linux-${{ matrix.sha }}
