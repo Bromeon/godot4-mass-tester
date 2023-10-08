@@ -8,7 +8,7 @@ name: Godot build pipeline
 
 on:
   workflow_dispatch: # manual trigger
-  push:
+#  push:
 
 defaults:
   run:
