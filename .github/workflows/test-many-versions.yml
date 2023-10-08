@@ -3,7 +3,8 @@
 
 name: Godot build pipeline
 
-#env:
+env:
+  COMPILE_GODOT: false
 
 
 on:
@@ -65,6 +66,7 @@ jobs:
 
     steps:
       - name: "Clone Godot ${{ matrix.sha }} "
+        if: env.COMPILE_GODOT == 'true'
         # Note: GODOT_BIN file does not yet exist, but the path can already be stored
         # Cloning doesn't work, need init + fetch
         env:
@@ -89,18 +91,21 @@ jobs:
 #          key: godot-linux-${{ env.SHA }}
 
       - name: "Checkout this repo"
+        if: env.COMPILE_GODOT == 'true'
         uses: actions/checkout@v3
         with:
           path: 'repo'
           clean: 'false'
 
       - name: "Install scons"
+        if: env.COMPILE_GODOT == 'true'
 #        if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
           pip install scons==3.1.2
           scons --version
 
       - name: "[Linux] C dependencies"
+        if: env.COMPILE_GODOT == 'true'
 #        if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
@@ -111,6 +116,7 @@ jobs:
               llvm libspeechd-dev speech-dispatcher fontconfig libfontconfig-dev
 
       - name: "[Linux|macOS] Compile Godot..."
+        if: env.COMPILE_GODOT == 'true'
 #        if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
           scons platform=linuxbsd target=editor dev_build=yes
@@ -123,12 +129,14 @@ jobs:
 
       # Upload artifact also when cached (so last successful workflow always has artifact)
       - name: "Upload artifact"
+        if: env.COMPILE_GODOT == 'true'
         uses: actions/upload-artifact@v3
         with:
           name: godot-linux-${{ matrix.sha }}
           path: bin
 
       - name: "Summary"
+        if: env.COMPILE_GODOT == 'true'
         # xargs has the nice side effect of trimming leading/trailing whitespace, see https://stackoverflow.com/a/12973694
         # The other answers, while more "idiomatic" (if that can even be said for something like bash), are not properly handling newlines
         run: |
@@ -141,6 +149,7 @@ jobs:
       # ----------------------------------------------------------------------------------------------------------------------------------------------
       # gdext
 
+      # Not a mistake: this clones self, below clones gdext
       - uses: actions/checkout@v3
 
       - uses: actions/checkout@v3
