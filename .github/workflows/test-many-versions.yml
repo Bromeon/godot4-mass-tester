@@ -154,19 +154,22 @@ jobs:
 
       # Not a mistake: this clones self, below clones gdext
       - uses: actions/checkout@v3
-        if: env.COMPILE_GODOT != 'true'
+        if: env.COMPILE_GODOT != 'true' # apparently needed, otherwise artifacts are not published
 
       - uses: actions/checkout@v3
+        if: env.COMPILE_GODOT != 'true'
         with:
           repository: godot-rust/gdext
           clean: false
           path: gdext
 
       - name: "List directory"
+        if: env.COMPILE_GODOT != 'true'
         run: |
           tree -L 2
 
       - name: "Run Godot integration test"
+        if: env.COMPILE_GODOT != 'true'
         uses: ./.github/composite/godot-itest
         with:
           artifact-name: godot-linux-${{ matrix.sha }}
