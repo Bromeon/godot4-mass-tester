@@ -4,7 +4,7 @@
 name: Godot build pipeline
 
 env:
-  COMPILE_GODOT: false
+  COMPILE_GODOT: true
 
 
 on:
@@ -70,7 +70,7 @@ jobs:
         # Note: GODOT_BIN file does not yet exist, but the path can already be stored
         # Cloning doesn't work, need init + fetch
         env:
-          SHA: 30713ac1ef1954d8964a7d84136470f9db2713ec
+          SHA: ${{ matrix.sha }}
         run: |
           git init
           #git remote add origin https://github.com/godotengine/godot.git
@@ -145,12 +145,16 @@ jobs:
           echo "## Godot version: \`$godotVer\`" >> $GITHUB_STEP_SUMMARY
           echo "Built for **${{ matrix.id }}** from commit [\`$SHA\`](https://github.com/godotengine/godot/commit/$SHA)." >> $GITHUB_STEP_SUMMARY
 
+      - name: "Move bin/* to main directory, if itest is continued"
+        if: env.COMPILE_GODOT == 'true'
+        run: mv bin/* .
 
       # ----------------------------------------------------------------------------------------------------------------------------------------------
       # gdext
 
       # Not a mistake: this clones self, below clones gdext
       - uses: actions/checkout@v3
+        if: env.COMPILE_GODOT != 'true'
 
       - uses: actions/checkout@v3
         with:
