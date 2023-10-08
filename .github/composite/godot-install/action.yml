@@ -36,9 +36,9 @@ runs:
 
     - name: "Download Godot artifact"
       #      if: steps.cache-godot.outputs.cache-hit != 'true'
-      # FIXME(#270): Use again latest workflow, instead of last-known good one 4921814392
+      #curl https://nightly.link/Bromeon/godot4-mass-tester/actions/runs/4950146893/${{ inputs.artifact-name }}.zip \
       run: |
-        curl https://nightly.link/Bromeon/godot4-mass-tester/actions/runs/4950146893/${{ inputs.artifact-name }}.zip \
+        curl https://nightly.link/Bromeon/godot4-mass-tester/workflows/test-many-versions/master/${{ inputs.artifact-name }}.zip \
           -Lo artifact.zip \
           --retry 3
         unzip artifact.zip -d $RUNNER_DIR/godot_bin

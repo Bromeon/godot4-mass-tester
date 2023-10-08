@@ -8,6 +8,7 @@ name: Godot build pipeline
 
 # !!!! MUST run with true first, then with false. A bit annoying, but somehow artifacts aren't found otherwise, then the run fails,
 # and then they're not even published; so all Godot build time goes to waste.
+# Note: above may not be true with always() in upload-artifact anymore.
 env:
   COMPILE_GODOT: false
 
