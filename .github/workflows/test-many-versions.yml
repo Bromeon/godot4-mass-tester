@@ -10,7 +10,7 @@ name: Godot build pipeline
 # and then they're not even published; so all Godot build time goes to waste.
 # Note: above may not be true with always() in upload-artifact anymore.
 env:
-  COMPILE_GODOT: false
+  COMPILE_GODOT: true
 
 
 on:
@@ -46,6 +46,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - { ord: -1, sha: '188650dc8cfbbd4e4d9e1b2b34fdac7a679e03b0' } # Godot PR 83054
           - { ord: 0, sha: '6916349697a4339216469e9bf5899b983d78db07' }
           - { ord: 1, sha: '62ca46cea480f30b16d271252ceb4ee846996017' }
           - { ord: 2, sha: 'a6a2d0d1599835364cdf5f912f98d87c5317dd05' }
