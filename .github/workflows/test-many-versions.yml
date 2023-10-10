@@ -10,7 +10,7 @@ name: Godot build pipeline
 # and then they're not even published; so all Godot build time goes to waste.
 # Note: above may not be true with always() in upload-artifact anymore.
 env:
-  COMPILE_GODOT: false
+  COMPILE_GODOT: true
 
 
 on:
@@ -46,19 +46,20 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { ord: '(fix-2)', sha: '74eccb12f91198a060e81d9d645fa986ee88f407' } # Godot PR 83054
-          - { ord: '(fix-1)', sha: '188650dc8cfbbd4e4d9e1b2b34fdac7a679e03b0' } # Godot PR 83054
-          - { ord: 0, sha: '6916349697a4339216469e9bf5899b983d78db07' }
-          - { ord: 1, sha: '62ca46cea480f30b16d271252ceb4ee846996017' }
-          - { ord: 2, sha: 'a6a2d0d1599835364cdf5f912f98d87c5317dd05' }
-          - { ord: 3, sha: '49e2bd9d5bcfe8d81a368ec80f802f90e883bec2' }
-          - { ord: 4, sha: '7b999ee07448501f8e234cde16f603ce6f9f3062' }
-          - { ord: 5, sha: '2f919f0fd0c7cf758dff90f99fbd3ca5b9612ac0' }
-          - { ord: 6, sha: '4a7d49a89a381f78f19d0b989c5cb5b500f098c9' }
-          - { ord: 7, sha: '1fee40a1897aaff77be3df8ec13d97981e8d8ba8' }
-          - { ord: 8, sha: 'a6de7a8a3f127dcfb4c603adb6cade149c370791' }
-          - { ord: 9, sha: '3006394a69af7ffdf8770cb28b65a690ebfdae00' }
-          - { ord: 'older', sha: '3cf1bc0a24e1c33c10825f2c6cc4867551fb9d1e' }
+          - { ord: '(fix-3)', sha: '88b6fee547a40617da80ea6ca36fd2df87160ab3' } # Godot PR 83054
+#          - { ord: '(fix-2)', sha: '74eccb12f91198a060e81d9d645fa986ee88f407' } # Godot PR 83054
+#          - { ord: '(fix-1)', sha: '188650dc8cfbbd4e4d9e1b2b34fdac7a679e03b0' } # Godot PR 83054
+#          - { ord: 0, sha: '6916349697a4339216469e9bf5899b983d78db07' }
+#          - { ord: 1, sha: '62ca46cea480f30b16d271252ceb4ee846996017' }
+#          - { ord: 2, sha: 'a6a2d0d1599835364cdf5f912f98d87c5317dd05' }
+#          - { ord: 3, sha: '49e2bd9d5bcfe8d81a368ec80f802f90e883bec2' }
+#          - { ord: 4, sha: '7b999ee07448501f8e234cde16f603ce6f9f3062' }
+#          - { ord: 5, sha: '2f919f0fd0c7cf758dff90f99fbd3ca5b9612ac0' }
+#          - { ord: 6, sha: '4a7d49a89a381f78f19d0b989c5cb5b500f098c9' }
+#          - { ord: 7, sha: '1fee40a1897aaff77be3df8ec13d97981e8d8ba8' }
+#          - { ord: 8, sha: 'a6de7a8a3f127dcfb4c603adb6cade149c370791' }
+#          - { ord: 9, sha: '3006394a69af7ffdf8770cb28b65a690ebfdae00' }
+#          - { ord: 'older', sha: '3cf1bc0a24e1c33c10825f2c6cc4867551fb9d1e' }
 
 
     steps:
