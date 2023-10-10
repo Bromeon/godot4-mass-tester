@@ -38,7 +38,8 @@ runs:
       #      if: steps.cache-godot.outputs.cache-hit != 'true'
       #curl https://nightly.link/Bromeon/godot4-mass-tester/actions/runs/4950146893/${{ inputs.artifact-name }}.zip \
       run: |
-        curl https://nightly.link/Bromeon/godot4-mass-tester/workflows/test-many-versions/master/${{ inputs.artifact-name }}.zip \
+        #curl https://nightly.link/godotengine/godot/workflows/runner/master/${{ inputs.artifact-name }}.zip \
+        curl  https://nightly.link/godotengine/godot/actions/artifacts/975248060.zip \
           -Lo artifact.zip \
           --retry 3
         unzip artifact.zip -d $RUNNER_DIR/godot_bin
