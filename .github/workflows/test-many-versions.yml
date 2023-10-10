@@ -10,7 +10,7 @@ name: Godot build pipeline
 # and then they're not even published; so all Godot build time goes to waste.
 # Note: above may not be true with always() in upload-artifact anymore.
 env:
-  COMPILE_GODOT: false
+  COMPILE_GODOT: true
 
 
 on:
@@ -46,7 +46,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { ord: -1, sha: '188650dc8cfbbd4e4d9e1b2b34fdac7a679e03b0' } # Godot PR 83054
+          - { ord: '(fix-2)', sha: '74eccb12f91198a060e81d9d645fa986ee88f407' } # Godot PR 83054
+          - { ord: '(fix-1)', sha: '188650dc8cfbbd4e4d9e1b2b34fdac7a679e03b0' } # Godot PR 83054
           - { ord: 0, sha: '6916349697a4339216469e9bf5899b983d78db07' }
           - { ord: 1, sha: '62ca46cea480f30b16d271252ceb4ee846996017' }
           - { ord: 2, sha: 'a6a2d0d1599835364cdf5f912f98d87c5317dd05' }
@@ -61,15 +62,7 @@ jobs:
           - { ord: 11, sha: '249e724835be7852297a7d59b6ab739064460e41' }
           - { ord: 12, sha: 'c05f521e16eabb4dc5809d7f41f01af833a32be8' }
           - { ord: 13, sha: '670de082f9c33b1c3dce0579cd35518717a68ef2' }
-          - { ord: 14, sha: '3075e4ef1d279876e71c8bfdc89ebfeb962d8cb5' }
-          - { ord: 15, sha: '7f8c3124a84504490dd20e5cf766b60837ae8430' }
-          - { ord: 16, sha: '373c4b22d3f2ea1f08ec36ca95a5115e9d967cfb' }
-          - { ord: 17, sha: 'db6a8956b2bcb69398908b587be57f59c2a2fd43' }
-          - { ord: 18, sha: 'd46c962f1850ee8aca933d147a1997156c69069d' }
-          - { ord: 19, sha: 'af1d81d95a9bced2e4c05488d8117963d1620863' }
-          - { ord: 20, sha: '9e455f424a635549b295272d82757c7ff99f33d7' }
-          - { ord: 21, sha: '04846c1d6db029bacb388438307669438e1504af' }
-          - { ord: 22, sha: 'f2ba8ec6ca2e4ff493cba11f95621d10ab8bb363' }
+
 
     steps:
       - name: "Clone Godot ${{ matrix.sha }} "
