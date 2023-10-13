@@ -19,10 +19,16 @@ inputs:
     default: ''
     description: "Command-line arguments passed to Godot"
 
+  # Currently unused; could be removed entirely.
   godot-check-header:
     required: false
     default: 'false'
     description: "Should the job check against latest gdextension_interface.h, and warn on difference"
+
+  godot-prebuilt-patch:
+    required: false
+    default: ''
+    description: "If specified, sets the branch name of the godot4-prebuilt crate to this value"
 
   rust-toolchain:
     required: false
@@ -39,6 +45,11 @@ inputs:
     default: ''
     description: "Extra values for the RUSTFLAGS env var"
 
+  rust-target:
+    required: false
+    default: ''
+    description: "If provided, acts as an argument for '--target', and results in output files written to ./target/{target}"
+
   with-llvm:
     required: false
     default: ''
@@ -52,7 +63,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    # IMPORTANT: was following 2 checkout steps were moved here due to macOS invoking itest many times
+    # Do not check out here, as this would overwrite (clean) the current directory and is already done by the parent workflow.
 
     - name: "Install Godot"
       uses: ./.github/composite/godot-install
@@ -70,28 +81,78 @@ runs:
         echo "GODOT_BUILT_FROM=_Built from [\`$godotVer\`](https://github.com/godotengine/godot/commit/$gitSha)._" >> $GITHUB_ENV
       shell: bash
 
-    # Skipped, runner's own Rust is fine
-#    - name: "Install Rust"
-#      uses: ./.github/composite/rust
-#      with:
-#        rust: ${{ inputs.rust-toolchain }}
-#        with-llvm: ${{ inputs.with-llvm }}
+    - name: "Install Rust"
+      uses: ./.github/composite/rust
+      with:
+        rust: ${{ inputs.rust-toolchain }}
+        with-llvm: ${{ inputs.with-llvm }}
 
-#    - name: "List directory"
-#      run: |
-#        ls -la
-#        tree -L 2
-#      shell: bash
+    - name: "Patch prebuilt version ({{ inputs.godot-prebuilt-patch }})"
+      if: inputs.godot-prebuilt-patch != ''
+      env:
+        VERSION: ${{ inputs.godot-prebuilt-patch }}
+      # sed -i'' needed for macOS compatibility, see https://stackoverflow.com/q/4247068
+      run: |
+        echo "Patch prebuilt version to $VERSION..."
+        
+        # Reduce version to "major.minor" format
+        apiVersion=$(echo $VERSION | sed -E 's/([0-9]+\.[0-9]+)\.[0-9]+/\1/')
+        
+        # For newer versions, update the compatibility_minimum in .gdextension files to the respective version.
+        # Nothing needs to be done for 4.0.x, as compatibility_minimum didn't exist back then.
+        if [[ "$apiVersion" == "4.2" ]]; then
+          echo "Update compatibility_minimum in .gdextension files to '$apiVersion'..."
+          dirs=("itest" "examples")
+          for dir in "${dirs[@]}"; do
+              find "$dir" -type f -name "*.gdextension" -exec sed -i'.bak' 's/compatibility_minimum = 4\.1/compatibility_minimum = $apiVersion/' {} +
+          done
+        
+        # Apply Cargo.toml patch for godot4-prebuilt crate
+        else
+          # Patch only needed if version is not already set
+          if grep -E 'godot4-prebuilt = { .+ branch = "$VERSION" }' godot-bindings/Cargo.toml; then
+            echo "Already has version $version; no need for patch."
+          else
+            cat << HEREDOC >> Cargo.toml
+        [patch."https://github.com/godot-rust/godot4-prebuilt"]
+        godot4-prebuilt = { git = "https://github.com//godot-rust/godot4-prebuilt", branch = "$VERSION" }
+        HEREDOC
+            echo "Patched Cargo.toml for version $version."
+          fi
+        fi
+
+      shell: bash
+
+    # else
+    - name: "No patch selected"
+      if: inputs.godot-prebuilt-patch == ''
+      run: |
+        echo "No patch selected; use default godot4-prebuilt version."
+      shell: bash
 
     - name: "Build gdext (itest)"
       working-directory: gdext
-      run: |
-        cargo build -v -p itest ${{ inputs.rust-extra-args }}
-      shell: bash
       env:
         RUSTFLAGS: ${{ inputs.rust-env-rustflags }}
+        TARGET: ${{ inputs.rust-target }}
+      run: |
+        targetArgs=""
+        if [[ -n "$TARGET" ]]; then
+          targetArgs="--target $TARGET"
+        fi
+        
+        cargo build -p itest ${{ inputs.rust-extra-args }} $targetArgs
+        
+        # Instead of modifying .gdextension, rename the output directory
+        if [[ -n "$TARGET" ]]; then
+          rm -rf target/debug
+          mv target/$TARGET/debug target
+        fi
+      shell: bash
 
-    # Note: no longer fails, as we expect header to be forward-compatible; instead issues a warning
+    # This step no longer fails if there's a diff, as we expect header to be forward-compatible; instead issues a warning
+    # However, still fails if patch cannot be applied (conflict).
+    # Step is only run in latest, not for compat 4.0.1 etc. -> no need to take into account different header versions.
     - name: "Copy and compare GDExtension header"
       working-directory: gdext
       if: inputs.godot-check-header == 'true'
@@ -110,7 +171,7 @@ runs:
             echo "\`\`\`diff" >> $GITHUB_STEP_SUMMARY
             git diff --no-index gdextension_interface_prebuilt.h gdextension_interface.h >> $GITHUB_STEP_SUMMARY || true
             echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-            echo "After manually updating file, run:   \`git diff -R > tweak.patch\`." >> $GITHUB_STEP_SUMMARY
+            echo "After manually updating file, run:   \`git diff -R > tweak2.patch && mv tweak2.patch tweak.patch\`." >> $GITHUB_STEP_SUMMARY
 
             # Undo modifications
             mv gdextension_interface_prebuilt.h gdextension_interface.h
@@ -126,11 +187,15 @@ runs:
       # * grep -q:  no output, use exit code 0 if found -> thus also &&
       # * pkill:    stop Godot execution (since it hangs in headless mode); simple 'head -1' did not work as expected
       # * exit:     the terminated process would return 143, but this is more explicit and future-proof
+      #
+      # --disallow-focus: fail if #[itest(focus)] is encountered, to prevent running only a few tests for full CI
       run: |
         cd itest/godot
         echo "OUTCOME=itest" >> $GITHUB_ENV
-        $GODOT4_BIN --headless ${{ inputs.godot-args }} 2>&1 | tee "${{ runner.temp }}/log.txt" | tee >(grep "SCRIPT ERROR:" -q && {
-        	printf "\n -- Godot engine encountered error, abort...\n";
+        $GODOT4_BIN --headless -- --disallow-focus ${{ inputs.godot-args }} 2>&1 \
+        | tee "${{ runner.temp }}/log.txt" \
+        | tee >(grep -E "SCRIPT ERROR:|Can't open dynamic library" -q && {
+        	printf "\n::error::godot-itest: unrecoverable Godot error, abort...\n";
         	pkill godot
             echo "OUTCOME=godot-runtime" >> $GITHUB_ENV
         	exit 2
