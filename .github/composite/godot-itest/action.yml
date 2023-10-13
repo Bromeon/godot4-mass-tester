@@ -141,7 +141,7 @@ runs:
           targetArgs="--target $TARGET"
         fi
         
-        cargo build -p itest ${{ inputs.rust-extra-args }} $targetArgs
+        cargo build -p itest --features godot/custom-godot ${{ inputs.rust-extra-args }} $targetArgs
         
         # Instead of modifying .gdextension, rename the output directory
         if [[ -n "$TARGET" ]]; then
