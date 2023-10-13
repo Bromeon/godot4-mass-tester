@@ -10,7 +10,7 @@ name: Godot build pipeline
 # and then they're not even published; so all Godot build time goes to waste.
 # Note: above may not be true with always() in upload-artifact anymore.
 env:
-  COMPILE_GODOT: false
+  COMPILE_GODOT: true
 
 
 on:
@@ -46,57 +46,95 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+#        include:
+#          - { rustc: "1.73.0", "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
+#          - { rustc: "1.72.1", "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
+#          - { rustc: "1.72.0", "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
+#          - { rustc: "1.71.1", "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
+#          - { rustc: "1.71.0", "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
+#          - { rustc: "1.70.0", "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
+#          - { rustc: "1.69.0", "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
+#          - { rustc: "1.68.2", "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
+#          - { rustc: "1.68.1", "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
+#          - { rustc: "1.68.0", "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
+
         include:
-          - { "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
-#          - { "sha": "954a3b337d0cdcccc79df4531f2482f115e4f29b", "msg": "#82724 from AThousandShips/grid_doc" }
-#          - { "sha": "0f5669be51b82e5ab6dbb65aa07444a62b4fa4e9", "msg": "#82712 from bruvzg/font_collection_name_select" }
-#          - { "sha": "dbd4c79c3846aca18a638a4529ad6cb4ba9be0a3", "msg": "#82682 from dsnopek/gdextension-dont-deprecate-script-category" }
-          - { "sha": "090a5b028b44cd8978468954f58f41db9ef8abfe", "msg": "#82638 from Repiteo/check_c_headers-to-dictionary" }
-#          - { "sha": "3a5d52428722ca3193a9ac77ac712a382b35e489", "msg": "#82614 from m4gr3d/openxr_eye_gaze_interaction" }
-#          - { "sha": "e41582f42f471fffc7302e1b6b7cbec29231c666", "msg": "#82547 from dalexeev/gds-fix-unsafe-call-arg-variant-constructors" }
-#          - { "sha": "19c72e847df823a7a22cae8194080269bfbff980", "msg": "#82544 from MewPurPur/improve-ray-docs" }
-          - { "sha": "2af3229ce7cd0982cd45c173f0ad0c9fad53a887", "msg": "#82516 from dalexeev/gds-improve-hl-types" }
-#          - { "sha": "4e1fce3c6f11e49332111126bd02f5d44416d606", "msg": "#82490 from NolanDC/fix_reimport_crash_for_non_loadable_assets" }
-#          - { "sha": "9af1983af29a558d6a12ae804fc5eb2a9d1d7667", "msg": "#82475 from bruvzg/ts_spacing_var" }
-#          - { "sha": "be6a09b6ec1e9520253b5332fcbd98bb0ce3339c", "msg": "#82423 from bruvzg/mac_ex_fs" }
-          - { "sha": "30bc0777564b9c095b76630eaddbcac14d5b435b", "msg": "#82364 from bruvzg/angle_lists_and_defaults" }
-#          - { "sha": "124f8983b878bd31e46c7651c58750a5d3b1d436", "msg": "#82357 from bruvzg/mac_fix_bl" }
-#          - { "sha": "0358abbeba015ee8009186887f9269bec08b659c", "msg": "#82179 from bruvzg/mode_docs" }
-#          - { "sha": "1376a5a0ced5edde39f1d0e729ec34b25cd4ce83", "msg": "#82103 from bruvzg/icu_export" }
-          - { "sha": "5d300016a3630377a272b07cddd2975682bf5e0f", "msg": "#81969 from bruvzg/macsign" }
-#          - { "sha": "b11309ddb6f45207f9eb03fcf223371ee85dd8cd", "msg": "#81633 from matorin57/code-completion-popup" }
-#          - { "sha": "24c166dfe205f8a5d07c8786b78568f5a5684174", "msg": "#81619 from Chaosus/fix_shader_const" }
-#          - { "sha": "a3d6d60fe17835abcd6da59762c1eedc819eed2b", "msg": "#81188 from the-sink/animation_player_things" }
-          - { "sha": "31dbbc2c5ac406d8d44655fd7a39f22ace958da0", "msg": "#80952 from bruvzg/nfdlg_refocus" }
-#          - { "sha": "cb4879a876fa01b42495af09174d315588e37317", "msg": "#80802 from xiongyaohua/path3d_gizmo_usability" }
-#          - { "sha": "3a990e36e69cd14512c7b8a9fb13a1ff61036ee2", "msg": "#80752 from bitsawer/fix_thread_guard" }
-#          - { "sha": "c3046f4c0dbb153af192f246ce504cecf1794128", "msg": "#80721 from tom95/resource-node-path-renaming" }
-          - { "sha": "530e01b4789d1710bf3d5ecbb588b43df0ebd745", "msg": "#80409 from bruvzg/est_title_size" }
-#          - { "sha": "ff9b3dc7304942fcbb05317be0be90f0e8faf866", "msg": "#80241 from gamedevishard/filesystem_dock_hsplit" }
-#          - { "sha": "39bf982e65f640af0550c6a66a51b23dab812144", "msg": "#79871 from bruvzg/mingw_prefix_fix" }
-#          - { "sha": "6de06138c0ce8a57164092794c0ebb782bcb9e9a", "msg": "#79425 from vnen/gdscript-load-classes-for-debug-tests" }
-          - { "sha": "9e8a93a5a905a21c02a802ac061510268700873d", "msg": "#78762 from Sauermann/fix-svc-event-filter" }
-#          - { "sha": "e64fce3bf493b2aa92c5f7c39515b513975404ce", "msg": "#69624 from Kubulambula/add-`typeof_string()`-utility" }
-#          - { "sha": "a2f90d565ad29edcb3bdab77bc7df51cdde8514a", "msg": "#82681 from akien-mga/doc-Node3DGizmo" }
-#          - { "sha": "57a6813bb8bc2417ddef1058d422a91f0c9f753c", "msg": "#81582 from YuriSizov/graph-toolbarniceness" }
-          - { "sha": "2d6cee48f6a407f171e4802d242fb6731ad020ad", "msg": "#80555 from GrammAcc/fix-80507" }
-#          - { "sha": "365ee4196cbf8c2d64e118b51473de75ae3a6b6a", "msg": "#68696 from TokisanGames/expose_editor_viewports" }
-#          - { "sha": "5e19247c72a859136cfc13612634920b410403ea", "msg": "#82671 from Flynsarmy/the_humble_comma" }
-#          - { "sha": "6bebd9c961c851ec36b67bd888eeaa9b9848c32f", "msg": "#82664 from hackerzhuli/master" }
-          - { "sha": "ad013919f1ca1d6e2fbfa198ec66df4cbe67c5a3", "msg": "#82641 from aaronfranke/anim-play-speed-scale" }
-#          - { "sha": "fab1c6f5527654ef39c4a14a5c41a651db33da00", "msg": "#82634 from Calinou/editor-tweak-gravity-scale-property-hint" }
-#          - { "sha": "9b29efd772855aee99dfcb7029abb3f05e883f3a", "msg": "#82633 from Faless/web/visibility_expose" }
-#          - { "sha": "98d9119cee57e7a20fb618caee4ce562fb2aa1ee", "msg": "#82603 from kkolyan/82601_fix_reload_loop" }
-          - { "sha": "b926d32ca784c20b81b99f5a99b013e8a5d7a7ca", "msg": "#82591 from Shnazzy/fix-rotation-order-advanced-import" }
-#          - { "sha": "1e819ae3aa9cd1fc78c7b0dfd44a2ffb8546a1b7", "msg": "#82590 from YuriSizov/window-you-come-to-me-on-this-day-the-day-when-my-child-becomes-exclusive-with-a-transient-parent-to-ask-for-this" }
-#          - { "sha": "1d6f37f80c01cfedef365179e1749480c7924ac2", "msg": "#82573 from Chaosus/fix_animationtree_crash" }
-#          - { "sha": "5fe97c58449e610eb3b261d8b03662c90b9a351d", "msg": "#82441 from akien-mga/web-clarify-get_unique_id" }
-          - { "sha": "bc118b36ac55d2d37b9fe6f08c8cfd42f3c69bc4", "msg": "#82370 from YuriSizov/graphs-request-rename-close-delete-please" }
-#          - { "sha": "0d034447b7b781812bc21584f455ac91e96abfb5", "msg": "#81648 from 4d49/fix-tab-metadata" }
-#          - { "sha": "6b70dfe7e2182b8c6a551115700838c6d5133668", "msg": "#81319 from KurtBliss/Changing-text-files-in-an-external-editor-doesn't-cause-them-to-reload-in-Script-Editor" }
-#          - { "sha": "3cf17679cac3b0f065c283e44f80a86242facb8f", "msg": "#81194 from rcorre/blend-import-76338" }
-          - { "sha": "0c7ac25b470cf4fa44b15dae0e3097a50d998cf6", "msg": "#81174 from BlueCube3310/tree-range-fix" }
-#          - { "sha": "0d4fe74043125f4c7e0291687e2820e8a5c67cb0", "msg": "#81007 from coumcashier/master" }
+          - { "sha": "7588e3ff0dd7f5e522009f770f99fe593d1ebdb0", "msg": "Merge pull request #80225 from ettiSurreal/rotate-toward" }
+          - { "sha": "2566cbec5ca5d36b6e67a6de3da382c35d1eb812", "msg": "Merge pull request #82542 from capnm/update_godot4.2_tip_from_0.10.7_revision_to_thorvg_0.11.0_release" }
+          - { "sha": "44e399ed5fa895f760b2995e59788bdb49782666", "msg": "Merge pull request #82534 from DarioSamo/fsr2-exposure-fix" }
+          - { "sha": "48ef57d465aaad97982f223cf98b69e4ccbee336", "msg": "Merge pull request #81725 from Rindbee/fix-folder-moving-in-FileSystemDock" }
+          - { "sha": "0923b87179e32e0c2ce74dc0eb67e0ad99e69893", "msg": "Merge pull request #74026 from ericliu206/hex-converter" }
+          - { "sha": "fbe611e45eebe48e2fdf4065fc70acad1cca2e0e", "msg": "Merge pull request #82482 from Rindbee/fix-bugs-in-bvh" }
+          - { "sha": "4c95ebddd6db36f01cde1fbcae79f133971f0cd9", "msg": "Merge pull request #82291 from bitsawer/fix_occlusion_culling_leak" }
+          - { "sha": "f2ab40cd4dcc58385f64bf74e4481a3197aafea3", "msg": "Merge pull request #81708 from JoNax97/drop-resource-with-variable" }
+          - { "sha": "4c3dc26367518e006f8555c12f5d2df0b8a28192", "msg": "Merge pull request #82450 from SlugFiller/fix-msvc-2017-gles-namespace" }
+          - { "sha": "54c7a26a3b28db99895f17bec8d45fc856a1ade8", "msg": "Merge pull request #81356 from pkdawson/rd-compat" }
+          - { "sha": "d616c3ecd01506f307482be986e1710746242d93", "msg": "Merge pull request #82408 from hpvb/fix-import-crash" }
+          - { "sha": "19057c07bc10261fce936541757c587755531d0c", "msg": "Merge pull request #67080 from Mickeon/resource-virtual-local-to-scene-setup" }
+          - { "sha": "27f86d9985ac46a1d5c0c6891185626a99ca3d8d", "msg": "Merge pull request #82403 from mihe/ray-result-reordering" }
+          - { "sha": "2dd129505a686dfa01fa8665e70dde82a2616aaf", "msg": "Merge pull request #79313 from aaronfranke/editor-file-dialog-side-menu" }
+          - { "sha": "1a7ea4ba50f57c424a5d5beb08c0a6b24d6b89ca", "msg": "Merge pull request #82360 from kleonc/tilemap-tile-animation-time-float-error" }
+          - { "sha": "92ac0e54fec5c910058bcdeac80b66d0037fbf02", "msg": "Merge pull request #82353 from RPicster/optimizing-glow" }
+          - { "sha": "e9e99775f13780aa85e402e4a2943f4414b600be", "msg": "Merge pull request #82375 from raulsntos/dotnet/fix-compat" }
+          - { "sha": "a4bca123363063551676f2b35578a45391845a3a", "msg": "Merge pull request #82304 from akien-mga/windows-remove-redundant-MSVC-define" }
+          - { "sha": "eefe161549d146e4b9783269b42ec3540f498e1f", "msg": "Merge pull request #81610 from Ughuuu/add-angle-limits-and-motor-to-pin-joint-2d" }
+          - { "sha": "ca8b229e1c7dcf1123ae0d24f331860b789df86c", "msg": "Merge pull request #80410 from bruvzg/rtl_img_features" }
+          - { "sha": "0a24f1dd0366fe22d967818a240bdc5ef0da2e27", "msg": "Merge pull request #82352 from bruvzg/fix_compiler_det" }
+          - { "sha": "563d22565462f35f3f592c0cdd1abd275ebe28ec", "msg": "Merge pull request #82287 from jsjtxietian/fix-clear-error-when-unset-exported-typed-array-vai-editor" }
+          - { "sha": "10cf3d05247ed8142f82bda4089f2a7d33f4a2d5", "msg": "Merge pull request #81843 from TokageItLab/improve-automapping" }
+          - { "sha": "538928b2730bdb8fee0a5eba4d356ed584ca7b52", "msg": "Merge pull request #81545 from bitsawer/fix_lightmap_gridmap_bake" }
+          - { "sha": "b9c36c930b217e9310959532b8a17c15315d9839", "msg": "Merge pull request #81270 from Sauermann/fix-canvas-layer-index-doc" }
+          - { "sha": "79805262f18bb1b00b84061994825db5afe94144", "msg": "Merge pull request #77829 from AThousandShips/mp_fix" }
+          - { "sha": "023b6b30c10afad72e3a1e0aca633d7e8a9e7056", "msg": "Merge pull request #73813 from groud/improve_y_sort_performances" }
+          - { "sha": "82f6e9be5ea06bfef1adb315f15a409939b4a100", "msg": "Merge pull request #82297 from sadikkuzu/master" }
+          - { "sha": "e4cfd4e26a7bb497a5fafcf804bae91ead3ac1c2", "msg": "Merge pull request #82195 from AThousandShips/radian_fix" }
+          - { "sha": "7a291898588f3b7c52b19808de682781073d21c2", "msg": "Merge pull request #81200 from RandomShaper/gd_vm_msvc" }
+          - { "sha": "91420573c07e983967fcd59c1229b1fbdd07d675", "msg": "Merge pull request #79965 from KoBeWi/popup_menu_sidequest" }
+          - { "sha": "df0a822323a79e1a645f0c6a17d51c7602f23166", "msg": "Merge pull request #82236 from Chubercik/item_list_separator_fix" }
+          - { "sha": "d8c31155a872f502902ecb47498233ebe0e6ed99", "msg": "Merge pull request #82191 from dsnopek/gdextension-redundant-hash-check" }
+          - { "sha": "64cde8ae8b3c729451d0f3c83b7b9581c3e79fe0", "msg": "Merge pull request #82168 from Supreeeme/ext-fix" }
+          - { "sha": "8788b20ea07a7083375b5bd0c240ea89c843b62a", "msg": "Merge pull request #81775 from darksylinc/matias-taa-msaa" }
+          - { "sha": "42fb795eb8bac1b010de55cab73608e7c1fc7345", "msg": "Merge pull request #80227 from raulsntos/get_tab_bar" }
+          - { "sha": "2048fe5df5f19a5467a6fc61b9c00fe41886b134", "msg": "Merge pull request #82245 from akien-mga/sync-gamecontrollerdb" }
+          - { "sha": "d65d379d22ee24593843d28800eec1fd446d1dd3", "msg": "Merge pull request #81802 from Nomad1/vs2022_mac_fix" }
+          - { "sha": "60947380599b8fbba741752729db34dde151717d", "msg": "Merge pull request #61910 from Calinou/lightmapgi-static-directional-fix-brightness" }
+          - { "sha": "fb4c0cf4624b1e3e738cf391e20cf2c08d76be9c", "msg": "Merge pull request #81971 from KoBeWi/there_is_only_one_scene" }
+          - { "sha": "4f314a64a5e44c1a7b607a3c1f41d2e07b2dac55", "msg": "Merge pull request #72831 from bruvzg/angle++" }
+          - { "sha": "0c71c7cc6f21c5a7b89b0409c60a3311e50da1ad", "msg": "Merge pull request #81967 from Jordyfel/physics-doc" }
+          - { "sha": "6df12fe1873c7c477454bc87effe1c87a9735ddd", "msg": "Merge pull request #80671 from fuzzybinary/gdextension-virtuals" }
+          - { "sha": "4613bfc9df46670fd1c14a63b78e8117a83ee186", "msg": "Merge pull request #81934 from Repiteo/c#-CS1591-disabled-to-suggestion" }
+          - { "sha": "c36f6f87e61d108698d5852e7c7ae40f930a90e0", "msg": "Merge pull request #81917 from AThousandShips/alloc_fix" }
+          - { "sha": "2c125bf9c0fa870c5af9a753a6b85295f01f0728", "msg": "Merge pull request #81872 from DarioSamo/lightmapper-half-pixel-offset" }
+          - { "sha": "712ebe7d8adde27b56b5b15a61f81d935c9c1356", "msg": "Merge pull request #81332 from dalexeev/gds-fix-update-array-literal-in-weak-context" }
+          - { "sha": "571cd0eb791b37e9a8adda9f909251138170f6b7", "msg": "Merge pull request #81885 from rmmh/fix-curve3d-twisting" }
+          - { "sha": "3d3a9ee827893d9c3e0930ac71896262fbc4dff9", "msg": "Merge pull request #81808 from anvilfolk/super-virtual" }
+          - { "sha": "01d9162a9833120e0e2b5ffc5759d24255184ec7", "msg": "Merge pull request #81813 from MewPurPur/fix-paint-icon" }
+          - { "sha": "793c382fa76db7b5cb1acf94798372ae0b157cc5", "msg": "Merge pull request #81703 from Repiteo/c#-binding-warnings-to-editorconfig" }
+          - { "sha": "7bb80b1525dc957fe74ca427a873fcf34a6b33a8", "msg": "Merge pull request #81741 from KoBeWi/vectoring_to_the_MAXXX" }
+          - { "sha": "61df1deb61b97028087dcbca8e68c82d0756d5f1", "msg": "Merge pull request #80075 from Bromeon/gdextension/optimize-ptrcalls" }
+          - { "sha": "cdef53df1ed3f37cb77a69df4530bc766f2f1617", "msg": "Merge pull request #81705 from AThousandShips/null_check_editor" }
+          - { "sha": "e5ac7cf034a05ace9120445ccef812d292546a52", "msg": "Merge pull request #81577 from anvilfolk/thecycleeeeeeeeeeeeesaaaaaaaaaaaaah" }
+          - { "sha": "be53991b5a6c079d6a1180819b6b566e0de4f316", "msg": "Merge pull request #80272 from aaronfranke/gltf-root-node-logic" }
+          - { "sha": "fa31a9fe2a27e4a571a815c99816ff8965b95be9", "msg": "Merge pull request #81673 from KoBeWi/only_child" }
+          - { "sha": "25688079413707851c1cc921308b03a531bd6f25", "msg": "Merge pull request #81651 from garychia/delete_anim_tracks" }
+          - { "sha": "df6cd37a697fcc2f63940d7984726661069c18b6", "msg": "Merge pull request #81516 from YuriSizov/editor-theme-access-the-success" }
+          - { "sha": "1328367abd5d5201537496181e5c70c88a91dd68", "msg": "Merge pull request #81650 from bitsawer/fix_gles3_constant" }
+          - { "sha": "b467afe65d826f9215f962fe7d78d6bbc1101624", "msg": "Merge pull request #81634 from lyuma/generate_lod_deprecate" }
+          - { "sha": "495b89ece928cbc5dd0779273e5e72587023f226", "msg": "Merge pull request #81561 from BastiaanOlij/fix_openxr_blend_modes" }
+          - { "sha": "223fc3cdd3c9f4927ecf68ebaa405c7c0993beec", "msg": "Merge pull request #81440 from ryanabx/features/warn-strict-supertype-only" }
+          - { "sha": "aa075e251abc67e5fd0cb121a9cce7f667aa6e69", "msg": "Merge pull request #79161 from MewPurPur/variant-icons" }
+          - { "sha": "98b50eb3083094a352b36b184d7b60b77ad982fe", "msg": "Merge pull request #81565 from timothyqiu/typos" }
+          - { "sha": "3e68ed0ca13f4ce3556d0d79771e5d4eae71ec94", "msg": "Merge pull request #81255 from JohnGabrielUK/primary-line-separate-xy" }
+          - { "sha": "7471ac2c4d96f7a8a36e05b10fd0229dba1540b1", "msg": "Merge pull request #81543 from DarioSamo/lightmap-size-crash-fix" }
+          - { "sha": "006a88c855cce31b07c9a7a1635ec045966e8a12", "msg": "Merge pull request #80975 from Calinou/editor-property-auto-refresh-add-property-hint" }
+          - { "sha": "218a27a85984ba51c5bf0fa38966ecde23d139b6", "msg": "Merge pull request #81517 from Calinou/doc-scrollcontainer-signal-touch-only" }
+          - { "sha": "013bbd1a1e226cc4e2127569390375a07239ca19", "msg": "Merge pull request #81477 from timothyqiu/aligned" }
+          - { "sha": "ca2d5b25fdb7d62322fc6705ee5f074167ba01bb", "msg": "Merge pull request #81094 from OXTyler/81071" }
+          - { "sha": "786dab42fddbc5bb2f8cabfd17ceceec67a3cf60", "msg": "Merge pull request #70329 from Daylily-Zeleen/daylily-zeleen/register_internal_class" }
+          - { "sha": "867e20e7b9357e7f13003077b8852aaac5027c53", "msg": "Merge pull request #81450 from KoBeWi/call_deferred()_is_too_powerful._It's_frightening" }
+          - { "sha": "5fef875cd85492ab15177f5b3ff8a8b177c6656c", "msg": "Merge pull request #81070 from groud/improve_tilemap_performances" }
+          - { "sha": "72ceaa8d9c75b16707a0ae3d35e21857969f2f8d", "msg": "Merge pull request #81226 from AThousandShips/file_diag_fix" }
+
 
 
     steps:
