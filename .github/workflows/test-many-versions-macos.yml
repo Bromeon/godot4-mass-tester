@@ -190,7 +190,8 @@ jobs:
           repository: godot-rust/gdext
           clean: false
           path: gdext
-          ref: nomerge/mass-test
+          ref: master
+#          ref: nomerge/mass-test
 
 #      - name: "List directory"
 #        if: env.COMPILE_GODOT != 'true'
