@@ -48,55 +48,55 @@ jobs:
       matrix:
         include:
           - { "sha": "f5696c311cdb09e0a34fa4ba7ef5d2524c515b89", "msg": "#82728 from KoBeWi/king_icong" }
-          - { "sha": "954a3b337d0cdcccc79df4531f2482f115e4f29b", "msg": "#82724 from AThousandShips/grid_doc" }
-          - { "sha": "0f5669be51b82e5ab6dbb65aa07444a62b4fa4e9", "msg": "#82712 from bruvzg/font_collection_name_select" }
-          - { "sha": "dbd4c79c3846aca18a638a4529ad6cb4ba9be0a3", "msg": "#82682 from dsnopek/gdextension-dont-deprecate-script-category" }
+#          - { "sha": "954a3b337d0cdcccc79df4531f2482f115e4f29b", "msg": "#82724 from AThousandShips/grid_doc" }
+#          - { "sha": "0f5669be51b82e5ab6dbb65aa07444a62b4fa4e9", "msg": "#82712 from bruvzg/font_collection_name_select" }
+#          - { "sha": "dbd4c79c3846aca18a638a4529ad6cb4ba9be0a3", "msg": "#82682 from dsnopek/gdextension-dont-deprecate-script-category" }
           - { "sha": "090a5b028b44cd8978468954f58f41db9ef8abfe", "msg": "#82638 from Repiteo/check_c_headers-to-dictionary" }
-          - { "sha": "3a5d52428722ca3193a9ac77ac712a382b35e489", "msg": "#82614 from m4gr3d/openxr_eye_gaze_interaction" }
-          - { "sha": "e41582f42f471fffc7302e1b6b7cbec29231c666", "msg": "#82547 from dalexeev/gds-fix-unsafe-call-arg-variant-constructors" }
-          - { "sha": "19c72e847df823a7a22cae8194080269bfbff980", "msg": "#82544 from MewPurPur/improve-ray-docs" }
+#          - { "sha": "3a5d52428722ca3193a9ac77ac712a382b35e489", "msg": "#82614 from m4gr3d/openxr_eye_gaze_interaction" }
+#          - { "sha": "e41582f42f471fffc7302e1b6b7cbec29231c666", "msg": "#82547 from dalexeev/gds-fix-unsafe-call-arg-variant-constructors" }
+#          - { "sha": "19c72e847df823a7a22cae8194080269bfbff980", "msg": "#82544 from MewPurPur/improve-ray-docs" }
           - { "sha": "2af3229ce7cd0982cd45c173f0ad0c9fad53a887", "msg": "#82516 from dalexeev/gds-improve-hl-types" }
-          - { "sha": "4e1fce3c6f11e49332111126bd02f5d44416d606", "msg": "#82490 from NolanDC/fix_reimport_crash_for_non_loadable_assets" }
-          - { "sha": "9af1983af29a558d6a12ae804fc5eb2a9d1d7667", "msg": "#82475 from bruvzg/ts_spacing_var" }
-          - { "sha": "be6a09b6ec1e9520253b5332fcbd98bb0ce3339c", "msg": "#82423 from bruvzg/mac_ex_fs" }
+#          - { "sha": "4e1fce3c6f11e49332111126bd02f5d44416d606", "msg": "#82490 from NolanDC/fix_reimport_crash_for_non_loadable_assets" }
+#          - { "sha": "9af1983af29a558d6a12ae804fc5eb2a9d1d7667", "msg": "#82475 from bruvzg/ts_spacing_var" }
+#          - { "sha": "be6a09b6ec1e9520253b5332fcbd98bb0ce3339c", "msg": "#82423 from bruvzg/mac_ex_fs" }
           - { "sha": "30bc0777564b9c095b76630eaddbcac14d5b435b", "msg": "#82364 from bruvzg/angle_lists_and_defaults" }
-          - { "sha": "124f8983b878bd31e46c7651c58750a5d3b1d436", "msg": "#82357 from bruvzg/mac_fix_bl" }
-          - { "sha": "0358abbeba015ee8009186887f9269bec08b659c", "msg": "#82179 from bruvzg/mode_docs" }
-          - { "sha": "1376a5a0ced5edde39f1d0e729ec34b25cd4ce83", "msg": "#82103 from bruvzg/icu_export" }
+#          - { "sha": "124f8983b878bd31e46c7651c58750a5d3b1d436", "msg": "#82357 from bruvzg/mac_fix_bl" }
+#          - { "sha": "0358abbeba015ee8009186887f9269bec08b659c", "msg": "#82179 from bruvzg/mode_docs" }
+#          - { "sha": "1376a5a0ced5edde39f1d0e729ec34b25cd4ce83", "msg": "#82103 from bruvzg/icu_export" }
           - { "sha": "5d300016a3630377a272b07cddd2975682bf5e0f", "msg": "#81969 from bruvzg/macsign" }
-          - { "sha": "b11309ddb6f45207f9eb03fcf223371ee85dd8cd", "msg": "#81633 from matorin57/code-completion-popup" }
-          - { "sha": "24c166dfe205f8a5d07c8786b78568f5a5684174", "msg": "#81619 from Chaosus/fix_shader_const" }
-          - { "sha": "a3d6d60fe17835abcd6da59762c1eedc819eed2b", "msg": "#81188 from the-sink/animation_player_things" }
+#          - { "sha": "b11309ddb6f45207f9eb03fcf223371ee85dd8cd", "msg": "#81633 from matorin57/code-completion-popup" }
+#          - { "sha": "24c166dfe205f8a5d07c8786b78568f5a5684174", "msg": "#81619 from Chaosus/fix_shader_const" }
+#          - { "sha": "a3d6d60fe17835abcd6da59762c1eedc819eed2b", "msg": "#81188 from the-sink/animation_player_things" }
           - { "sha": "31dbbc2c5ac406d8d44655fd7a39f22ace958da0", "msg": "#80952 from bruvzg/nfdlg_refocus" }
-          - { "sha": "cb4879a876fa01b42495af09174d315588e37317", "msg": "#80802 from xiongyaohua/path3d_gizmo_usability" }
-          - { "sha": "3a990e36e69cd14512c7b8a9fb13a1ff61036ee2", "msg": "#80752 from bitsawer/fix_thread_guard" }
-          - { "sha": "c3046f4c0dbb153af192f246ce504cecf1794128", "msg": "#80721 from tom95/resource-node-path-renaming" }
+#          - { "sha": "cb4879a876fa01b42495af09174d315588e37317", "msg": "#80802 from xiongyaohua/path3d_gizmo_usability" }
+#          - { "sha": "3a990e36e69cd14512c7b8a9fb13a1ff61036ee2", "msg": "#80752 from bitsawer/fix_thread_guard" }
+#          - { "sha": "c3046f4c0dbb153af192f246ce504cecf1794128", "msg": "#80721 from tom95/resource-node-path-renaming" }
           - { "sha": "530e01b4789d1710bf3d5ecbb588b43df0ebd745", "msg": "#80409 from bruvzg/est_title_size" }
-          - { "sha": "ff9b3dc7304942fcbb05317be0be90f0e8faf866", "msg": "#80241 from gamedevishard/filesystem_dock_hsplit" }
-          - { "sha": "39bf982e65f640af0550c6a66a51b23dab812144", "msg": "#79871 from bruvzg/mingw_prefix_fix" }
-          - { "sha": "6de06138c0ce8a57164092794c0ebb782bcb9e9a", "msg": "#79425 from vnen/gdscript-load-classes-for-debug-tests" }
+#          - { "sha": "ff9b3dc7304942fcbb05317be0be90f0e8faf866", "msg": "#80241 from gamedevishard/filesystem_dock_hsplit" }
+#          - { "sha": "39bf982e65f640af0550c6a66a51b23dab812144", "msg": "#79871 from bruvzg/mingw_prefix_fix" }
+#          - { "sha": "6de06138c0ce8a57164092794c0ebb782bcb9e9a", "msg": "#79425 from vnen/gdscript-load-classes-for-debug-tests" }
           - { "sha": "9e8a93a5a905a21c02a802ac061510268700873d", "msg": "#78762 from Sauermann/fix-svc-event-filter" }
-          - { "sha": "e64fce3bf493b2aa92c5f7c39515b513975404ce", "msg": "#69624 from Kubulambula/add-`typeof_string()`-utility" }
-          - { "sha": "a2f90d565ad29edcb3bdab77bc7df51cdde8514a", "msg": "#82681 from akien-mga/doc-Node3DGizmo" }
-          - { "sha": "57a6813bb8bc2417ddef1058d422a91f0c9f753c", "msg": "#81582 from YuriSizov/graph-toolbarniceness" }
+#          - { "sha": "e64fce3bf493b2aa92c5f7c39515b513975404ce", "msg": "#69624 from Kubulambula/add-`typeof_string()`-utility" }
+#          - { "sha": "a2f90d565ad29edcb3bdab77bc7df51cdde8514a", "msg": "#82681 from akien-mga/doc-Node3DGizmo" }
+#          - { "sha": "57a6813bb8bc2417ddef1058d422a91f0c9f753c", "msg": "#81582 from YuriSizov/graph-toolbarniceness" }
           - { "sha": "2d6cee48f6a407f171e4802d242fb6731ad020ad", "msg": "#80555 from GrammAcc/fix-80507" }
-          - { "sha": "365ee4196cbf8c2d64e118b51473de75ae3a6b6a", "msg": "#68696 from TokisanGames/expose_editor_viewports" }
-          - { "sha": "5e19247c72a859136cfc13612634920b410403ea", "msg": "#82671 from Flynsarmy/the_humble_comma" }
-          - { "sha": "6bebd9c961c851ec36b67bd888eeaa9b9848c32f", "msg": "#82664 from hackerzhuli/master" }
+#          - { "sha": "365ee4196cbf8c2d64e118b51473de75ae3a6b6a", "msg": "#68696 from TokisanGames/expose_editor_viewports" }
+#          - { "sha": "5e19247c72a859136cfc13612634920b410403ea", "msg": "#82671 from Flynsarmy/the_humble_comma" }
+#          - { "sha": "6bebd9c961c851ec36b67bd888eeaa9b9848c32f", "msg": "#82664 from hackerzhuli/master" }
           - { "sha": "ad013919f1ca1d6e2fbfa198ec66df4cbe67c5a3", "msg": "#82641 from aaronfranke/anim-play-speed-scale" }
-          - { "sha": "fab1c6f5527654ef39c4a14a5c41a651db33da00", "msg": "#82634 from Calinou/editor-tweak-gravity-scale-property-hint" }
-          - { "sha": "9b29efd772855aee99dfcb7029abb3f05e883f3a", "msg": "#82633 from Faless/web/visibility_expose" }
-          - { "sha": "98d9119cee57e7a20fb618caee4ce562fb2aa1ee", "msg": "#82603 from kkolyan/82601_fix_reload_loop" }
+#          - { "sha": "fab1c6f5527654ef39c4a14a5c41a651db33da00", "msg": "#82634 from Calinou/editor-tweak-gravity-scale-property-hint" }
+#          - { "sha": "9b29efd772855aee99dfcb7029abb3f05e883f3a", "msg": "#82633 from Faless/web/visibility_expose" }
+#          - { "sha": "98d9119cee57e7a20fb618caee4ce562fb2aa1ee", "msg": "#82603 from kkolyan/82601_fix_reload_loop" }
           - { "sha": "b926d32ca784c20b81b99f5a99b013e8a5d7a7ca", "msg": "#82591 from Shnazzy/fix-rotation-order-advanced-import" }
-          - { "sha": "1e819ae3aa9cd1fc78c7b0dfd44a2ffb8546a1b7", "msg": "#82590 from YuriSizov/window-you-come-to-me-on-this-day-the-day-when-my-child-becomes-exclusive-with-a-transient-parent-to-ask-for-this" }
-          - { "sha": "1d6f37f80c01cfedef365179e1749480c7924ac2", "msg": "#82573 from Chaosus/fix_animationtree_crash" }
-          - { "sha": "5fe97c58449e610eb3b261d8b03662c90b9a351d", "msg": "#82441 from akien-mga/web-clarify-get_unique_id" }
+#          - { "sha": "1e819ae3aa9cd1fc78c7b0dfd44a2ffb8546a1b7", "msg": "#82590 from YuriSizov/window-you-come-to-me-on-this-day-the-day-when-my-child-becomes-exclusive-with-a-transient-parent-to-ask-for-this" }
+#          - { "sha": "1d6f37f80c01cfedef365179e1749480c7924ac2", "msg": "#82573 from Chaosus/fix_animationtree_crash" }
+#          - { "sha": "5fe97c58449e610eb3b261d8b03662c90b9a351d", "msg": "#82441 from akien-mga/web-clarify-get_unique_id" }
           - { "sha": "bc118b36ac55d2d37b9fe6f08c8cfd42f3c69bc4", "msg": "#82370 from YuriSizov/graphs-request-rename-close-delete-please" }
-          - { "sha": "0d034447b7b781812bc21584f455ac91e96abfb5", "msg": "#81648 from 4d49/fix-tab-metadata" }
-          - { "sha": "6b70dfe7e2182b8c6a551115700838c6d5133668", "msg": "#81319 from KurtBliss/Changing-text-files-in-an-external-editor-doesn't-cause-them-to-reload-in-Script-Editor" }
-          - { "sha": "3cf17679cac3b0f065c283e44f80a86242facb8f", "msg": "#81194 from rcorre/blend-import-76338" }
+#          - { "sha": "0d034447b7b781812bc21584f455ac91e96abfb5", "msg": "#81648 from 4d49/fix-tab-metadata" }
+#          - { "sha": "6b70dfe7e2182b8c6a551115700838c6d5133668", "msg": "#81319 from KurtBliss/Changing-text-files-in-an-external-editor-doesn't-cause-them-to-reload-in-Script-Editor" }
+#          - { "sha": "3cf17679cac3b0f065c283e44f80a86242facb8f", "msg": "#81194 from rcorre/blend-import-76338" }
           - { "sha": "0c7ac25b470cf4fa44b15dae0e3097a50d998cf6", "msg": "#81174 from BlueCube3310/tree-range-fix" }
-          - { "sha": "0d4fe74043125f4c7e0291687e2820e8a5c67cb0", "msg": "#81007 from coumcashier/master" }
+#          - { "sha": "0d4fe74043125f4c7e0291687e2820e8a5c67cb0", "msg": "#81007 from coumcashier/master" }
 
 
     steps:
