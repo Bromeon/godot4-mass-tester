@@ -254,3 +254,4 @@ jobs:
 #        with:
 #          artifact-name: godot-linux-${{ matrix.sha }}
 #          godot-binary: godot.linuxbsd.editor.dev.x86_64
+#          workflow: test-single-version

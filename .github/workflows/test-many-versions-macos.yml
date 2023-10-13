@@ -10,7 +10,7 @@ name: Godot build pipeline
 # and then they're not even published; so all Godot build time goes to waste.
 # Note: above may not be true with always() in upload-artifact anymore.
 env:
-  COMPILE_GODOT: true
+  COMPILE_GODOT: false
 
 
 on:
@@ -140,6 +140,7 @@ jobs:
           scons --version
 
       - name: "[macOS] - MoltenVK Vulkan library"
+        if: env.COMPILE_GODOT == 'true'
 #        if: steps.cache-godot.outputs.cache-hit != 'true' && matrix.os == 'macos'
         run: |
           sh misc/scripts/install_vulkan_sdk_macos.sh
@@ -183,24 +184,95 @@ jobs:
 
       # Not a mistake: this clones self, below clones gdext
       - uses: actions/checkout@v3
-        if: env.COMPILE_GODOT != 'true' # apparently needed, otherwise artifacts are not published
 
       - uses: actions/checkout@v3
-        if: env.COMPILE_GODOT != 'true'
         with:
           repository: godot-rust/gdext
           clean: false
           path: gdext
           ref: nomerge/mass-test
 
-      - name: "List directory"
-        if: env.COMPILE_GODOT != 'true'
-        run: |
-          tree -L 2
+#      - name: "List directory"
+#        if: env.COMPILE_GODOT != 'true'
+#        run: |
+#          tree -L 2
 
-      - name: "Run Godot integration test"
+      - name: "Run Godot integration test (0)"
         if: env.COMPILE_GODOT != 'true'
         uses: ./.github/composite/godot-itest
         with:
           artifact-name: godot-macos-${{ matrix.sha }}
           godot-binary: godot.macos.editor.dev.x86_64
+          workflow: test-many-versions-macos
+
+      - name: "Run Godot integration test (1)"
+        if: env.COMPILE_GODOT != 'true'
+        uses: ./.github/composite/godot-itest
+        with:
+          artifact-name: godot-macos-${{ matrix.sha }}
+          godot-binary: godot.macos.editor.dev.x86_64
+          workflow: test-many-versions-macos
+
+      - name: "Run Godot integration test (2)"
+        if: env.COMPILE_GODOT != 'true'
+        uses: ./.github/composite/godot-itest
+        with:
+          artifact-name: godot-macos-${{ matrix.sha }}
+          godot-binary: godot.macos.editor.dev.x86_64
+          workflow: test-many-versions-macos
+
+      - name: "Run Godot integration test (3)"
+        if: env.COMPILE_GODOT != 'true'
+        uses: ./.github/composite/godot-itest
+        with:
+          artifact-name: godot-macos-${{ matrix.sha }}
+          godot-binary: godot.macos.editor.dev.x86_64
+          workflow: test-many-versions-macos
+
+      - name: "Run Godot integration test (4)"
+        if: env.COMPILE_GODOT != 'true'
+        uses: ./.github/composite/godot-itest
+        with:
+          artifact-name: godot-macos-${{ matrix.sha }}
+          godot-binary: godot.macos.editor.dev.x86_64
+          workflow: test-many-versions-macos
+
+      - name: "Run Godot integration test (5)"
+        if: env.COMPILE_GODOT != 'true'
+        uses: ./.github/composite/godot-itest
+        with:
+          artifact-name: godot-macos-${{ matrix.sha }}
+          godot-binary: godot.macos.editor.dev.x86_64
+          workflow: test-many-versions-macos
+
+      - name: "Run Godot integration test (6)"
+        if: env.COMPILE_GODOT != 'true'
+        uses: ./.github/composite/godot-itest
+        with:
+          artifact-name: godot-macos-${{ matrix.sha }}
+          godot-binary: godot.macos.editor.dev.x86_64
+          workflow: test-many-versions-macos
+
+      - name: "Run Godot integration test (7)"
+        if: env.COMPILE_GODOT != 'true'
+        uses: ./.github/composite/godot-itest
+        with:
+          artifact-name: godot-macos-${{ matrix.sha }}
+          godot-binary: godot.macos.editor.dev.x86_64
+          workflow: test-many-versions-macos
+
+      - name: "Run Godot integration test (8)"
+        if: env.COMPILE_GODOT != 'true'
+        uses: ./.github/composite/godot-itest
+        with:
+          artifact-name: godot-macos-${{ matrix.sha }}
+          godot-binary: godot.macos.editor.dev.x86_64
+          workflow: test-many-versions-macos
+
+      - name: "Run Godot integration test (9)"
+        if: env.COMPILE_GODOT != 'true'
+        uses: ./.github/composite/godot-itest
+        with:
+          artifact-name: godot-macos-${{ matrix.sha }}
+          godot-binary: godot.macos.editor.dev.x86_64
+          workflow: test-many-versions-macos

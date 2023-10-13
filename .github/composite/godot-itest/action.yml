@@ -44,15 +44,22 @@ inputs:
     default: ''
     description: "Set to 'true' if LLVM should be installed"
 
+  workflow:
+    required: true
+    description: "Workflow name of the workflow that produced the artifact"
+
 
 runs:
   using: "composite"
   steps:
+    # IMPORTANT: was following 2 checkout steps were moved here due to macOS invoking itest many times
+
     - name: "Install Godot"
       uses: ./.github/composite/godot-install
       with:
         artifact-name: ${{ inputs.artifact-name }}
         godot-binary: ${{ inputs.godot-binary }}
+        workflow: ${{ inputs.workflow }}
 
     # The chmod seems still necessary, although applied before uploading artifact. Possibly modes are not preserved.
     # The `| xargs` pattern trims the output, since printed version may contain extra newline, which causes problems in env vars.
@@ -70,11 +77,11 @@ runs:
 #        rust: ${{ inputs.rust-toolchain }}
 #        with-llvm: ${{ inputs.with-llvm }}
 
-    - name: "List directory"
-      run: |
-        ls -la
-        tree -L 2
-      shell: bash
+#    - name: "List directory"
+#      run: |
+#        ls -la
+#        tree -L 2
+#      shell: bash
 
     - name: "Build gdext (itest)"
       working-directory: gdext
