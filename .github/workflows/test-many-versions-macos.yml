@@ -48,13 +48,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-#          - { rustc: "1.73.0", "sha": "7588e3ff0dd7f5e522009f770f99fe593d1ebdb0" }
-          - { rustc: "1.73.0", "sha": "0358abbeba015ee8009186887f9269bec08b659c" }
-          - { rustc: "1.72.1", "sha": "0358abbeba015ee8009186887f9269bec08b659c" }
-          - { rustc: "1.72.0", "sha": "0358abbeba015ee8009186887f9269bec08b659c" }
-          - { rustc: "1.71.1", "sha": "0358abbeba015ee8009186887f9269bec08b659c" }
-          - { rustc: "1.71.0", "sha": "0358abbeba015ee8009186887f9269bec08b659c" }
-          - { rustc: "1.70.0", "sha": "0358abbeba015ee8009186887f9269bec08b659c" }
+          - { rustc: "1.73.0", "sha": "7588e3ff0dd7f5e522009f770f99fe593d1ebdb0" }
+          - { rustc: "1.72.1", "sha": "7588e3ff0dd7f5e522009f770f99fe593d1ebdb0" }
+          - { rustc: "1.72.0", "sha": "7588e3ff0dd7f5e522009f770f99fe593d1ebdb0" }
+          - { rustc: "1.71.1", "sha": "7588e3ff0dd7f5e522009f770f99fe593d1ebdb0" }
+          - { rustc: "1.71.0", "sha": "7588e3ff0dd7f5e522009f770f99fe593d1ebdb0" }
+          - { rustc: "1.70.0", "sha": "7588e3ff0dd7f5e522009f770f99fe593d1ebdb0" }
 #          - { rustc: "1.69.0", "sha": "0358abbeba015ee8009186887f9269bec08b659c" }
 #          - { rustc: "1.68.2", "sha": "0358abbeba015ee8009186887f9269bec08b659c" }
 #          - { rustc: "1.68.1", "sha": "0358abbeba015ee8009186887f9269bec08b659c" }
